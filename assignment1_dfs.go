@@ -5,6 +5,7 @@ import (
 )
 
 var StateMapDFS = map[string]int{}
+var NodesExpandedDFS int = 0
 
 func SolvePuzzleGetKeyValsDFS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankIdxRow int, BlankIdxCol int, KeyValsPlayed *[]string, ActionsPlayed *[]string) bool {
 	KeyVal := GetHashKeyHelper(InitialConfiguration)
@@ -18,6 +19,7 @@ func SolvePuzzleGetKeyValsDFS(InitialConfiguration [][]rune, GoalConfiguration [
 	}
 
 	Top, Bottom, Left, Right := false, false, false, false
+	NodesExpandedDFS++
 
 	if BlankIdxRow > 0 {
 		StateMapDFS[KeyVal] = 1
@@ -111,27 +113,28 @@ func SolvePuzzleGetKeyValsDFS(InitialConfiguration [][]rune, GoalConfiguration [
 	return false
 }
 
-func main() {
-	InitialConfiguration, BlankIdxRow, BlankIdxCol := GenerateTestCaseHelper()
-	GoalConfiguration := GetGoalConfiguration()
-
+func mainDFS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankIdxRow int, BlankIdxCol int, uiEnabled bool) {
 	KeyValsPlayed := []string{}
 	ActionsPlayed := []string{}
 	fileManager := NewFileOutputManager("output_dfs.txt")
 
+	fmt.Println("Starting Depth-First Search (DFS)...")
 	if SolvePuzzleGetKeyValsDFS(InitialConfiguration, GoalConfiguration, BlankIdxRow, BlankIdxCol, &KeyValsPlayed, &ActionsPlayed) {
-		fmt.Println("Solution found!")
+		fmt.Printf("Solution found with DFS! Total nodes expanded: %d\n", NodesExpandedDFS)
+		fmt.Printf("Total steps in solution: %d\n", len(KeyValsPlayed))
+		fmt.Println("Writing solution to output_dfs.txt...")
+
 		for i, key := range KeyValsPlayed {
-			fmt.Printf("Step %d:\n", i+1)
 			if i > 0 {
-				fmt.Printf("Action: %s\n", ActionsPlayed[i-1])
 				fileManager.PrintBoardWithAction(key, ActionsPlayed[i-1], i+1)
 			} else {
-				fmt.Println("Initial state:")
 				fileManager.PrintBoardWithAction(key, "", i+1)
 			}
 		}
+
+		// Generate web visualization if UI is enabled
+		GenerateWebVisualization(KeyValsPlayed, ActionsPlayed, "DFS", NodesExpandedDFS, uiEnabled)
 	} else {
-		fmt.Println("No solution found.")
+		fmt.Println("No solution found with DFS.")
 	}
 }
