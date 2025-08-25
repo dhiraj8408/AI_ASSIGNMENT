@@ -19,9 +19,8 @@ func CopyBoard(original [][]rune) [][]rune {
 func main() {
 	fmt.Println("=== 8-PUZZLE SOLVER COMPARISON ===")
 
-	uiEnabled := true
+	uiEnabled := false
 
-	// Generate a single test case that both algorithms will solve
 	fmt.Println("Generating test case...")
 	InitialConfigurationGlobal, BlankIdxRowGlobal, BlankIdxColGlobal := GenerateTestCaseHelper()
 	GoalConfiguration := GetGoalConfiguration()
@@ -44,13 +43,23 @@ func main() {
 	idsBoard := CopyBoard(InitialConfigurationGlobal)
 	mainIDS(idsBoard, GoalConfiguration, BlankIdxRowGlobal, BlankIdxColGlobal, uiEnabled)
 
+	fmt.Println("\n==================================================")
+
 	fmt.Println("3. Solving Board via BDS...")
 	bdsBoard := CopyBoard(InitialConfigurationGlobal)
 	mainBDS(bdsBoard, GoalConfiguration, BlankIdxRowGlobal, BlankIdxColGlobal, uiEnabled)
 
+	fmt.Println("\n==================================================")
+
+	fmt.Println("4. Solving Board via A*...")
+	ASTARBoard := CopyBoard(InitialConfigurationGlobal)
+	mainASTAR(ASTARBoard, GoalConfiguration, BlankIdxRowGlobal, BlankIdxColGlobal, uiEnabled)
+
+	fmt.Println("\n==================================================")
+
 	fmt.Println("\n=== COMPARISON COMPLETE ===")
 	if uiEnabled {
-		fmt.Println("\n🌐 Web visualizations have been generated!")
+		fmt.Println("\n Web visualizations have been generated!")
 		fmt.Println("   Open the following HTML files in your browser:")
 		fmt.Println("   - puzzle_solution_dfs.html")
 		fmt.Println("   - puzzle_solution_ids.html")

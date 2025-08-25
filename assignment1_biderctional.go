@@ -67,27 +67,22 @@ func SolveBDS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankId
 			if NewBlankRowIdxG >= 0 && NewBlankRowIdxG < 3 && NewBlankColIdxG >= 0 && NewBlankColIdxG < 3 {
 				if NewBlankRowIdx >= 0 && NewBlankRowIdx < 3 && NewBlankColIdx >= 0 && NewBlankColIdx < 3 {
 
-					// Record actions for state map tracking
 					actionI := fmt.Sprintf("I:B -> %s -> %c", dirI.name, InitialConfiguration[NewBlankRowIdx][NewBlankColIdx])
 					actionG := fmt.Sprintf("G:B -> %s -> %c", dirG.name, GoalConfiguration[NewBlankRowIdxG][NewBlankColIdxG])
 
-					// Make moves
 					InitialConfiguration[BlankIdxRowI][BlankIdxColI], InitialConfiguration[NewBlankRowIdx][NewBlankColIdx] =
 						InitialConfiguration[NewBlankRowIdx][NewBlankColIdx], InitialConfiguration[BlankIdxRowI][BlankIdxColI]
 
 					GoalConfiguration[BlankIdxRowG][BlankIdxColG], GoalConfiguration[NewBlankRowIdxG][NewBlankColIdxG] =
 						GoalConfiguration[NewBlankRowIdxG][NewBlankColIdxG], GoalConfiguration[BlankIdxRowG][BlankIdxColG]
 
-					// Create new parent actions for next level
 					NewParentI := Actions{ParentState: KeyValI, Action: actionI}
 					NewParentG := Actions{ParentState: KeyValG, Action: actionG}
 
-					// Recursive call
 					if SolveBDS(InitialConfiguration, GoalConfiguration, NewBlankRowIdx, NewBlankColIdx, NewBlankRowIdxG, NewBlankColIdxG, NewParentI, NewParentG) {
 						return true
 					}
 
-					// Backtrack
 					InitialConfiguration[BlankIdxRowI][BlankIdxColI], InitialConfiguration[NewBlankRowIdx][NewBlankColIdx] =
 						InitialConfiguration[NewBlankRowIdx][NewBlankColIdx], InitialConfiguration[BlankIdxRowI][BlankIdxColI]
 
@@ -102,11 +97,9 @@ func SolveBDS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankId
 }
 
 func ReconstructPathFromStateMaps(initialKey string, goalKey string, KeyValsPlayed *[]string, ActionsPlayed *[]string) {
-	// Find the meeting point - look for intersection in state maps
 	var meetingPoint string
 	var foundIntersection bool
 
-	// Check if any forward state exists in backward map
 	for forwardKey := range StateMapBDSForward {
 		if _, exists := StateMapBDSBackward[forwardKey]; exists {
 			meetingPoint = forwardKey
@@ -115,7 +108,6 @@ func ReconstructPathFromStateMaps(initialKey string, goalKey string, KeyValsPlay
 		}
 	}
 
-	// If no intersection found in forward->backward, check backward->forward
 	if !foundIntersection {
 		for backwardKey := range StateMapBDSBackward {
 			if _, exists := StateMapBDSForward[backwardKey]; exists {
@@ -138,7 +130,6 @@ func ReconstructPathFromStateMaps(initialKey string, goalKey string, KeyValsPlay
 	forwardActions := []string{}
 	current := meetingPoint
 
-	// Trace back from meeting point to initial state
 	for current != "" && current != initialKey {
 		forwardPath = append([]string{current}, forwardPath...)
 		if action, exists := StateMapBDSForward[current]; exists {
@@ -161,7 +152,6 @@ func ReconstructPathFromStateMaps(initialKey string, goalKey string, KeyValsPlay
 	backwardActions := []string{}
 	current = meetingPoint
 
-	// Trace back from meeting point to goal state
 	for current != "" && current != goalKey {
 		if action, exists := StateMapBDSBackward[current]; exists {
 			if action.ParentState != "" && action.ParentState != goalKey {
@@ -184,7 +174,6 @@ func ReconstructPathFromStateMaps(initialKey string, goalKey string, KeyValsPlay
 	fmt.Printf("Forward path length: %d\n", len(forwardPath))
 	fmt.Printf("Backward path length: %d\n", len(backwardPath))
 
-	// Combine paths (remove duplicate meeting point)
 	*KeyValsPlayed = forwardPath
 	if len(backwardPath) > 0 {
 		*KeyValsPlayed = append(*KeyValsPlayed, backwardPath...)
@@ -224,7 +213,6 @@ func mainBDS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankIdx
 	fmt.Println("Starting Bidirectional DFS Search (BDS)...")
 
 	if SolveBDS(InitialConfiguration, GoalConfiguration, BlankIdxRowI, BlankIdxColI, BlankIdxRowG, BlankIdxColG, ParentI, ParentG) {
-		// Reconstruct the full path from state maps
 		ReconstructPathFromStateMaps(initialKey, goalKey, &KeyValsPlayed, &ActionsPlayed)
 
 		fmt.Printf("Solution found with BDS! Total nodes expanded: %d\n", NodesExpandedBDS)
@@ -239,7 +227,6 @@ func mainBDS(InitialConfiguration [][]rune, GoalConfiguration [][]rune, BlankIdx
 			}
 		}
 
-		// Generate web visualization if UI is enabled
 		GenerateWebVisualization(KeyValsPlayed, ActionsPlayed, "BDS", NodesExpandedBDS, uiEnabled)
 	} else {
 		fmt.Println("No solution found with BDS.")
