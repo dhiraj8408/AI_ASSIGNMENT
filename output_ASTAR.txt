@@ -1,158 +1,165 @@
 Step 1:
-1 4 B 
-2 5 7 
-8 6 3 
+8 B 6 
+7 1 2 
+5 4 3 
 
 
 Step 2:
-Action: 4 LEFT
-1 B 4 
-2 5 7 
-8 6 3 
+Action: 1 DOWN
+8 1 6 
+7 B 2 
+5 4 3 
 
 
 Step 3:
-Action: 5 DOWN
-1 5 4 
-2 B 7 
-8 6 3 
+Action: 7 LEFT
+8 1 6 
+B 7 2 
+5 4 3 
 
 
 Step 4:
-Action: 2 LEFT
-1 5 4 
-B 2 7 
-8 6 3 
+Action: 8 UP
+B 1 6 
+8 7 2 
+5 4 3 
 
 
 Step 5:
-Action: 1 UP
-B 5 4 
-1 2 7 
-8 6 3 
+Action: 1 RIGHT
+1 B 6 
+8 7 2 
+5 4 3 
 
 
 Step 6:
-Action: 5 RIGHT
-5 B 4 
-1 2 7 
-8 6 3 
+Action: 6 RIGHT
+1 6 B 
+8 7 2 
+5 4 3 
 
 
 Step 7:
 Action: 2 DOWN
-5 2 4 
-1 B 7 
-8 6 3 
+1 6 2 
+8 7 B 
+5 4 3 
 
 
 Step 8:
-Action: 7 RIGHT
-5 2 4 
-1 7 B 
-8 6 3 
+Action: 7 LEFT
+1 6 2 
+8 B 7 
+5 4 3 
 
 
 Step 9:
-Action: 4 UP
-5 2 B 
-1 7 4 
-8 6 3 
+Action: 8 LEFT
+1 6 2 
+B 8 7 
+5 4 3 
 
 
 Step 10:
-Action: 2 LEFT
-5 B 2 
-1 7 4 
-8 6 3 
+Action: 5 DOWN
+1 6 2 
+5 8 7 
+B 4 3 
 
 
 Step 11:
-Action: 5 LEFT
-B 5 2 
-1 7 4 
-8 6 3 
+Action: 4 RIGHT
+1 6 2 
+5 8 7 
+4 B 3 
 
 
 Step 12:
-Action: 1 DOWN
-1 5 2 
-B 7 4 
-8 6 3 
+Action: 8 UP
+1 6 2 
+5 B 7 
+4 8 3 
 
 
 Step 13:
 Action: 7 RIGHT
-1 5 2 
-7 B 4 
-8 6 3 
+1 6 2 
+5 7 B 
+4 8 3 
 
 
 Step 14:
-Action: 4 RIGHT
-1 5 2 
-7 4 B 
-8 6 3 
+Action: 3 DOWN
+1 6 2 
+5 7 3 
+4 8 B 
 
 
 Step 15:
-Action: 3 DOWN
-1 5 2 
-7 4 3 
-8 6 B 
+Action: 8 LEFT
+1 6 2 
+5 7 3 
+4 B 8 
 
 
 Step 16:
-Action: 6 LEFT
-1 5 2 
-7 4 3 
-8 B 6 
+Action: 7 UP
+1 6 2 
+5 B 3 
+4 7 8 
 
 
 Step 17:
-Action: 8 LEFT
-1 5 2 
-7 4 3 
-B 8 6 
+Action: 6 UP
+1 B 2 
+5 6 3 
+4 7 8 
 
 
 Step 18:
-Action: 7 UP
-1 5 2 
-B 4 3 
-7 8 6 
+Action: 2 RIGHT
+1 2 B 
+5 6 3 
+4 7 8 
 
 
 Step 19:
-Action: 4 RIGHT
-1 5 2 
-4 B 3 
-7 8 6 
+Action: 3 DOWN
+1 2 3 
+5 6 B 
+4 7 8 
 
 
 Step 20:
-Action: 5 UP
-1 B 2 
-4 5 3 
-7 8 6 
+Action: 6 LEFT
+1 2 3 
+5 B 6 
+4 7 8 
 
 
 Step 21:
-Action: 2 RIGHT
-1 2 B 
-4 5 3 
-7 8 6 
+Action: 5 LEFT
+1 2 3 
+B 5 6 
+4 7 8 
 
 
 Step 22:
-Action: 3 DOWN
+Action: 4 DOWN
 1 2 3 
-4 5 B 
-7 8 6 
+4 5 6 
+B 7 8 
 
 
 Step 23:
-Action: 6 DOWN
+Action: 7 RIGHT
+1 2 3 
+4 5 6 
+7 B 8 
+
+
+Step 24:
+Action: 8 RIGHT
 1 2 3 
 4 5 6 
 7 8 B 
