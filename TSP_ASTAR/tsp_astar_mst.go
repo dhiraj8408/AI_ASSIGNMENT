@@ -117,8 +117,7 @@ func tsp_helper_astar(graph [][]int64, vertices int) ([]string, int64, int, bool
 	return nil, 0, nodesExpanded, false
 }
 
-func main() {
-	vertices := 25
+func mainASTAR(vertices int) {
 	graph := generateGraph(vertices)
 	startTime := time.Now()
 	actionsPlayed, cost, nodesExpanded, success := tsp_helper_astar(graph, vertices)

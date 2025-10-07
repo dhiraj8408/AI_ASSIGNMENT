@@ -81,7 +81,7 @@ func generateGraph(vertices int) [][]int64 {
 			if i == j {
 				adjacencyList[i][j] = 0
 			} else {
-				adjacencyList[i][j] = rand.Int63n(100) + 1
+				adjacencyList[i][j] = rand.Int63n(10) + 1
 			}
 		}
 	}
