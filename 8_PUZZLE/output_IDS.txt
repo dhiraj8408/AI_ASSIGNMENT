@@ -1,0 +1,69 @@
+Step 1:
+1 3 5 
+B 2 6 
+4 7 8 
+
+
+Step 2:
+Action: B -> DOWN -> 4
+1 3 5 
+4 2 6 
+B 7 8 
+
+
+Step 3:
+Action: B -> RIGHT -> 7
+1 3 5 
+4 2 6 
+7 B 8 
+
+
+Step 4:
+Action: B -> RIGHT -> 8
+1 3 5 
+4 2 6 
+7 8 B 
+
+
+Step 5:
+Action: B -> UP -> 6
+1 3 5 
+4 2 B 
+7 8 6 
+
+
+Step 6:
+Action: B -> UP -> 5
+1 3 B 
+4 2 5 
+7 8 6 
+
+
+Step 7:
+Action: B -> LEFT -> 3
+1 B 3 
+4 2 5 
+7 8 6 
+
+
+Step 8:
+Action: B -> DOWN -> 2
+1 2 3 
+4 B 5 
+7 8 6 
+
+
+Step 9:
+Action: B -> RIGHT -> 5
+1 2 3 
+4 5 B 
+7 8 6 
+
+
+Step 10:
+Action: B -> DOWN -> 6
+1 2 3 
+4 5 6 
+7 8 B 
+
+
